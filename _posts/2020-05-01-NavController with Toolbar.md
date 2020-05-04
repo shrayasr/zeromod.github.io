@@ -11,7 +11,7 @@ Android Jetpack's Navigation component helps you implement navigation, from simp
 
 ## Documentation for toolbar 
 
-To sync up with the toolbar and navigation component, from the official documentation 
+To sync up the toolbar and navigation component, the official documentation suggests
 
 ``` kotlin
 val navController = findNavController(R.id.nav_host_fragment)
@@ -19,7 +19,7 @@ val appBarConfiguration = AppBarConfiguration(navController.graph)
 findViewById<Toolbar>(R.id.toolbar).setupWithNavController(navController, appBarConfiguration)
 ```
 
-The above configurations seems good and works for most of the common cases. But we hit a feature request of handling custom navigate back action on perticular fragment.
+The above configurations seems good and works for most of the common cases until we hit a feature request of handling custom navigate back action on a particular fragment.
 
 We can do that by,
 
@@ -42,12 +42,11 @@ override fun onOptionsItemSelected(item: MenuItem): Boolean = when (item.itemId)
 
 ## Problem
 
-The problem came up with this implementation is that, it only works with `System Navigation Back` button. And will not work for In-App UP action on the toolbar.
-
+The problem with this implementation is that, it only works with **System Navigation Back** button. And will not work for **In-App UP action** on the toolbar.
 
 ## Solution
 
-Instead of using `toolbar.setupWithNavController(navController, appBarConfiguration)`
+Instead of using `toolbar.setupWithNavController(navController, appBarConfiguration)`, use
 
 ``` kotlin
 NavigationUI.setupActionBarWithNavController(this@MainActivity, navController, appBarConfiguration)
